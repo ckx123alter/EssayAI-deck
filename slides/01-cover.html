@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>01 · EssayAI Cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+/* Cover-specific overrides */
+body { display: flex; align-items: center; justify-content: center; }
+
+.light-stage { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.light-shaft {
+  position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+  width: 1100px; height: 900px;
+  background: radial-gradient(ellipse 55% 90% at 50% 0%, rgba(180,195,210,0.18) 0%, rgba(180,195,210,0.08) 30%, rgba(180,195,210,0.02) 55%, transparent 70%);
+  animation: lightReveal 2.4s var(--ease-soft) forwards; opacity: 0;
+}
+.light-core {
+  position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 380px; height: 700px;
+  background: radial-gradient(ellipse 50% 85% at 50% 0%, rgba(200,210,220,0.22) 0%, rgba(190,200,215,0.10) 25%, rgba(180,195,210,0.03) 50%, transparent 72%);
+  animation: lightReveal 2.0s 0.3s var(--ease-soft) forwards; opacity: 0;
+}
+.light-warm {
+  position: absolute; top: 380px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 200px;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200,185,160,0.10) 0%, rgba(200,185,160,0.04) 40%, transparent 70%);
+  animation: lightReveal 2.8s 0.6s var(--ease-soft) forwards; opacity: 0;
+}
+
+.text-block { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: -40px; position: relative; z-index: 1; }
+.product-name { font-family: var(--font-serif); font-size: 120px; font-weight: 500; letter-spacing: 0.04em; color: var(--text-primary); line-height: 1; margin-bottom: 4px; opacity: 0; animation: textFadeUp 1.4s 0.9s var(--ease-soft) forwards; }
+.product-name .dot { font-family: var(--font-sans); font-weight: 300; color: var(--accent); }
+.core-claim { font-family: var(--font-sans); font-size: 28px; font-weight: 300; letter-spacing: 0.12em; color: var(--text-secondary); margin-bottom: 48px; opacity: 0; animation: textFadeUp 1.4s 1.2s var(--ease-soft) forwards; }
+.cover-divider { width: 60px; height: 1px; background: var(--text-tertiary); margin-bottom: 40px; opacity: 0; animation: textFadeUp 1.4s 1.4s var(--ease-soft) forwards; }
+.subtitle { font-family: var(--font-sans); font-size: 17px; font-weight: 400; letter-spacing: 0.08em; color: var(--text-tertiary); margin-bottom: 40px; opacity: 0; animation: textFadeUp 1.4s 1.5s var(--ease-soft) forwards; }
+.bottom-whisper { position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%); font-family: var(--font-sans); font-size: 12px; font-weight: 300; letter-spacing: 0.1em; color: #C8C8C8; text-transform: uppercase; white-space: nowrap; text-align: center; opacity: 0; animation: textFadeUp 1.4s 2.0s var(--ease-soft) forwards; }
+
+/* Diffused ambient light pools */
+.deco-sphere { position: fixed; border-radius: 50%; pointer-events: none; z-index: 998; filter: blur(80px); }
+/* Bottom-left: warm light */
+.deco-bl {
+  bottom: -300px; left: -200px; width: 900px; height: 700px;
+  background: radial-gradient(ellipse 60% 55% at 45% 40%, rgba(200,190,175,0.18) 0%, rgba(195,185,170,0.06) 35%, transparent 65%);
+}
+/* Top-right: cool daylight */
+.deco-tr {
+  top: -250px; right: -150px; width: 800px; height: 600px;
+  background: radial-gradient(ellipse 55% 50% at 55% 50%, rgba(175,190,210,0.15) 0%, rgba(180,195,215,0.05) 30%, transparent 62%);
+}
+/* Center-left: very faint bridging tone */
+.deco-mid {
+  top: 300px; left: -100px; width: 600px; height: 500px;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(185,188,200,0.08) 0%, rgba(190,192,202,0.03) 40%, transparent 68%);
+}
+</style>
+</head>
+<body>
+
+<div class="light-stage">
+  <div class="light-shaft"></div>
+  <div class="light-core"></div>
+  <div class="light-warm"></div>
+</div>
+
+<div class="text-block">
+  <h1 class="product-name">Essay<span class="dot">AI</span></h1>
+  <p class="core-claim">「让每个人拥有顶级文书」</p>
+  <div class="cover-divider"></div>
+  <p class="subtitle">AI产品经理 · 项目展示</p>
+</div>
+
+
+  <!-- Decorative spheres -->
+  <div class="deco-sphere deco-bl"></div>
+  <div class="deco-sphere deco-tr"></div>
+</body>
+</html>

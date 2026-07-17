@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>09 · 增长路线图</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+.light-stage { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.light-ambient {
+  position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+  width: 1500px; height: 600px;
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(185,198,212,0.10) 0%, rgba(185,198,212,0.04) 35%, transparent 65%);
+  animation: lightReveal 2.2s var(--ease-soft) forwards; opacity: 0;
+}
+
+.page-header { margin-bottom: 28px; }
+
+/* SVG curve layer */
+.curve-stage { position: absolute; top: 200px; left: 160px; right: 160px; bottom: 160px; pointer-events: none; z-index: 0; }
+.curve-stage svg { width: 100%; height: 100%; }
+.curve-path {
+  fill: none; stroke: rgba(74,85,104,0.25); stroke-width: 2;
+  stroke-dasharray: 3000; stroke-dashoffset: 3000;
+  animation: drawCurve 2.0s 0.6s var(--ease-soft) both;
+}
+@keyframes drawCurve {
+  0%   { stroke-dashoffset: 3000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+	.curve-dot {
+	  opacity: 0;
+	  animation: dotReveal 0.4s var(--ease-soft) both;
+	}
+	.curve-dot:nth-child(2) { animation-delay: 0.9s; }
+	.curve-dot:nth-child(3) { animation-delay: 1.3s; }
+	.curve-dot:nth-child(4) { animation-delay: 1.7s; }
+	@keyframes dotReveal {
+	  0%   { opacity: 0; }
+	  100% { opacity: 0.5; }
+	}
+/* Phase cards positioned along the curve */
+.phases-container { position: relative; z-index: 1; flex: 0; display: flex; align-items: flex-start; gap: 60px; justify-content: center; padding: 0 120px; margin-top: 40px; }
+
+.tl-phase {
+  flex: 1; max-width: 420px;
+  opacity: 0; animation: cardReveal 1.1s var(--ease-soft) forwards;
+}
+.tl-phase:nth-child(1) { animation-delay: 0.7s; margin-top: 180px; }
+.tl-phase:nth-child(2) { animation-delay: 1.0s; margin-top: 80px; }
+.tl-phase:nth-child(3) { animation-delay: 1.3s; margin-top: 0px; }
+
+.tl-card {
+  background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border); border-radius: 16px; padding: 36px 36px;
+  box-shadow: var(--shadow-card); transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+.tl-card:hover { background: var(--card-hover-bg); box-shadow: var(--shadow-card-hover); }
+
+.tl-dot-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.tl-dot {
+  width: 12px; height: 12px; border-radius: 50%; background: var(--accent); flex-shrink: 0;
+  box-shadow: 0 0 0 5px rgba(74,85,104,0.10);
+}
+.tl-dot-label { font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--accent); }
+
+.tl-time {
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
+  color: var(--accent); margin-bottom: 14px;
+}
+.tl-title {
+  font-family: var(--font-serif); font-size: 24px; font-weight: 500; letter-spacing: 0.03em;
+  color: var(--text-primary); margin-bottom: 14px; line-height: 1.2;
+}
+.tl-metrics { display: flex; align-items: center; gap: 24px; margin-bottom: 16px; }
+.tl-metric { display: flex; align-items: center; gap: 6px; }
+.tl-num { font-family: var(--font-serif); font-size: 20px; font-weight: 500; color: var(--accent); }
+.tl-mlabel { font-family: var(--font-sans); font-size: 14px; font-weight: 300; color: var(--text-secondary); }
+.tl-desc { font-family: var(--font-sans); font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--text-secondary); }
+.tl-desc .em { font-weight: 500; color: var(--text-primary); }
+
+/* Diffused ambient light pools */
+.deco-sphere { position: fixed; border-radius: 50%; pointer-events: none; z-index: 998; filter: blur(80px); }
+/* Bottom-left: warm light */
+.deco-bl {
+  bottom: -300px; left: -200px; width: 900px; height: 700px;
+  background: radial-gradient(ellipse 60% 55% at 45% 40%, rgba(200,190,175,0.18) 0%, rgba(195,185,170,0.06) 35%, transparent 65%);
+}
+/* Top-right: cool daylight */
+.deco-tr {
+  top: -250px; right: -150px; width: 800px; height: 600px;
+  background: radial-gradient(ellipse 55% 50% at 55% 50%, rgba(175,190,210,0.15) 0%, rgba(180,195,215,0.05) 30%, transparent 62%);
+}
+/* Center-left: very faint bridging tone */
+.deco-mid {
+  top: 300px; left: -100px; width: 600px; height: 500px;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(185,188,200,0.08) 0%, rgba(190,192,202,0.03) 40%, transparent 68%);
+}
+</style>
+</head>
+<body>
+
+<div class="light-stage"><div class="light-ambient"></div></div>
+
+<!-- Upward curve SVG -->
+<div class="curve-stage">
+  <svg viewBox="0 0 1400 620" preserveAspectRatio="none">
+    <path class="curve-path" d="M 40 580 Q 400 380, 700 200 T 1360 20" />
+    <!-- Small dots at node positions -->
+    <circle class="curve-dot" cx="280" cy="460" r="5" fill="#4A5568" />
+    <circle class="curve-dot" cx="700" cy="220" r="5" fill="#4A5568" />
+    <circle class="curve-dot" cx="1120" cy="30" r="5" fill="#4A5568" />
+  </svg>
+</div>
+
+<div class="content">
+  <div class="page-header">
+    <h1 class="page-title">增长路线图</h1>
+    <p class="page-subtitle">「从0到1的三阶段增长曲线」</p>
+  </div>
+
+  <div class="phases-container">
+    <!-- Phase 1 -->
+    <div class="tl-phase">
+      <div class="tl-card">
+        <div class="tl-dot-row"><div class="tl-dot"></div><div class="tl-dot-label">Phase 1</div></div>
+        <div class="tl-time">0–3 个月</div>
+        <div class="tl-title">MVP 验证</div>
+        <div class="tl-metrics">
+          <div class="tl-metric"><span class="tl-num">500</span><span class="tl-mlabel">DAU</span></div>
+          <div class="tl-metric"><span class="tl-num">30%</span><span class="tl-mlabel">次日留存</span></div>
+        </div>
+        <div class="tl-desc">通过<span class="em">朋友圈裂变</span>验证核心价值，跑通免费到付费的<span class="em">最小闭环</span></div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="tl-phase">
+      <div class="tl-card">
+        <div class="tl-dot-row"><div class="tl-dot"></div><div class="tl-dot-label">Phase 2</div></div>
+        <div class="tl-time">3–6 个月</div>
+        <div class="tl-title">规模化增长</div>
+        <div class="tl-metrics">
+          <div class="tl-metric"><span class="tl-num">5,000</span><span class="tl-mlabel">DAU</span></div>
+          <div class="tl-metric"><span class="tl-num">¥30+</span><span class="tl-mlabel">ARPU/年</span></div>
+        </div>
+        <div class="tl-desc">上线<span class="em">高级会员</span>体系，通过KOL投放+社群运营实现用户规模化增长</div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="tl-phase">
+      <div class="tl-card">
+        <div class="tl-dot-row"><div class="tl-dot"></div><div class="tl-dot-label">Phase 3</div></div>
+        <div class="tl-time">6–12 个月</div>
+        <div class="tl-title">生态扩展</div>
+        <div class="tl-metrics">
+          <div class="tl-metric"><span class="tl-num">20,000</span><span class="tl-mlabel">DAU</span></div>
+          <div class="tl-metric"><span class="tl-num">SaaS</span><span class="tl-mlabel">B端上线</span></div>
+        </div>
+        <div class="tl-desc">拓展<span class="em">B端中介SaaS服务</span>，建立可防御的双边网络效应</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-tagline">
+  <div class="tagline-line"></div>
+  <div class="tagline-text">先验证<span class="sep">·</span>再增长<span class="sep">·</span>后扩展 —— 每一步都可衡量</div>
+</div>
+
+  <!-- Decorative spheres -->
+  <div class="deco-sphere deco-bl"></div>
+  <div class="deco-sphere deco-tr"></div>
+</body>
+</html>

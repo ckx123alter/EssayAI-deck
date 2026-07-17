@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>11 · 谢谢</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+body { display: flex; align-items: center; justify-content: center; }
+
+.light-stage { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+/* Full broad light — the "缝隙" now fully open */
+.light-full {
+  position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+  width: 1920px; height: 1200px;
+  background: radial-gradient(ellipse 65% 85% at 50% 35%, rgba(200,210,220,0.14) 0%, rgba(190,200,215,0.07) 30%, rgba(180,195,210,0.02) 55%, transparent 70%);
+  animation: lightReveal 3.0s 0.2s var(--ease-soft) forwards; opacity: 0;
+}
+
+.end-block { text-align: center; position: relative; z-index: 1; }
+
+.end-thanks {
+  font-family: var(--font-serif); font-size: 96px; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--text-primary); line-height: 1; margin-bottom: 24px;
+  opacity: 0; animation: textFadeUp 1.6s 0.8s var(--ease-soft) forwards;
+}
+.end-sub {
+  font-family: var(--font-sans); font-size: 22px; font-weight: 300; letter-spacing: 0.1em;
+  color: var(--text-secondary); margin-bottom: 52px;
+  opacity: 0; animation: textFadeUp 1.4s 1.2s var(--ease-soft) forwards;
+}
+.end-divider { width: 60px; height: 1px; background: var(--divider); margin: 0 auto 48px; opacity: 0; animation: textFadeUp 1.2s 1.5s var(--ease-soft) forwards; }
+
+.end-contact {
+  font-family: var(--font-sans); font-size: 15px; font-weight: 300; letter-spacing: 0.06em;
+  color: var(--text-tertiary); line-height: 2;
+  opacity: 0; animation: textFadeUp 1.4s 1.7s var(--ease-soft) forwards;
+}
+.end-contact .hl { font-weight: 500; color: var(--text-primary); }
+
+.end-anchor {
+  margin-top: 56px;
+  font-family: var(--font-serif); font-size: 17px; font-style: italic; font-weight: 400; letter-spacing: 0.06em;
+  color: var(--accent-soft);
+  opacity: 0; animation: textFadeUp 1.4s 2.2s var(--ease-soft) forwards;
+}
+
+/* Diffused ambient light pools */
+.deco-sphere { position: fixed; border-radius: 50%; pointer-events: none; z-index: 998; filter: blur(80px); }
+/* Bottom-left: warm light */
+.deco-bl {
+  bottom: -300px; left: -200px; width: 900px; height: 700px;
+  background: radial-gradient(ellipse 60% 55% at 45% 40%, rgba(200,190,175,0.18) 0%, rgba(195,185,170,0.06) 35%, transparent 65%);
+}
+/* Top-right: cool daylight */
+.deco-tr {
+  top: -250px; right: -150px; width: 800px; height: 600px;
+  background: radial-gradient(ellipse 55% 50% at 55% 50%, rgba(175,190,210,0.15) 0%, rgba(180,195,215,0.05) 30%, transparent 62%);
+}
+/* Center-left: very faint bridging tone */
+.deco-mid {
+  top: 300px; left: -100px; width: 600px; height: 500px;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(185,188,200,0.08) 0%, rgba(190,192,202,0.03) 40%, transparent 68%);
+}
+</style>
+</head>
+<body>
+
+<div class="light-stage"><div class="light-full"></div></div>
+
+<div class="end-block">
+  <h1 class="end-thanks">谢谢</h1>
+  <p class="end-sub">「期待与你一起，用AI重新定义留学文书」</p>
+  <div class="end-divider"></div>
+  <div class="end-contact">
+    <span class="hl">陈可莘</span> &nbsp;·&nbsp; 19821742260 &nbsp;·&nbsp; 530946401@qq.com
+  </div>
+  <div class="end-anchor">EssayAI · 让每个人拥有顶级文书</div>
+</div>
+
+  <!-- Decorative spheres -->
+  <div class="deco-sphere deco-bl"></div>
+  <div class="deco-sphere deco-tr"></div>
+</body>
+</html>

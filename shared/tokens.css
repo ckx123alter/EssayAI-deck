@@ -1,0 +1,186 @@
+/* ═══════════════════════════════════════
+   EssayAI Deck · Shared Design Tokens
+   Direction: Jony Ive · Essentialism
+   ═══════════════════════════════════════ */
+
+:root {
+  /* ——— Palette ——— */
+  --bg: #FAFAFA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #5A5A5A;
+  --text-tertiary: #999999;
+  --text-whisper: #B0B0B0;
+  --accent: #4A5568;
+  --accent-soft: #6B7D92;
+  --divider: #D8D8D8;
+
+  /* ——— Card Glass ——— */
+  --card-bg: rgba(255, 255, 255, 0.50);
+  --card-border: rgba(255, 255, 255, 0.55);
+  --card-hover-bg: rgba(255, 255, 255, 0.68);
+  --shadow-card: 0 2px 60px rgba(0, 0, 0, 0.04), 0 1px 20px rgba(0, 0, 0, 0.03);
+  --shadow-card-hover: 0 4px 80px rgba(0, 0, 0, 0.06), 0 1px 30px rgba(0, 0, 0, 0.04);
+
+  /* ——— Typography ——— */
+  --font-serif: 'Newsreader', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ——— Animation ——— */
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ——— Reset ——— */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 1920px;
+  height: 1080px;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* ——— Decorative Spheres ——— */
+body::before {
+  content: '';
+  position: absolute;
+  bottom: -260px;
+  left: -80px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 55%, rgba(140,160,190,0.28) 0%, rgba(155,170,195,0.14) 25%, rgba(170,185,200,0.05) 50%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -60px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 55% 45%, rgba(155,175,200,0.22) 0%, rgba(165,180,200,0.10) 28%, rgba(175,188,205,0.04) 52%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ——— Shared Keyframes ——— */
+@keyframes textFadeUp {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardReveal {
+  0%   { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes lightReveal {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes lineGrow {
+  0%   { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+/* ——— Standard Layout Helpers ——— */
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 90px 160px 0;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: textFadeUp 1.2s 0.4s var(--ease-soft) forwards;
+}
+
+.page-subtitle {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  opacity: 0;
+  animation: textFadeUp 1.2s 0.7s var(--ease-soft) forwards;
+}
+
+/* Bottom tagline bar */
+.bottom-tagline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 44px;
+}
+
+.tagline-line {
+  width: 80px;
+  height: 1px;
+  background: var(--divider);
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: textFadeUp 1.2s 2.0s var(--ease-soft) forwards;
+}
+
+.tagline-text {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-whisper);
+  opacity: 0;
+  animation: textFadeUp 1.2s 2.2s var(--ease-soft) forwards;
+}
+
+.tagline-text .sep {
+  margin: 0 20px;
+  color: #D0D0D0;
+}
+
+/* Page number (optional, subtle) */
+.page-num {
+  position: absolute;
+  bottom: 56px;
+  right: 80px;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #C8C8C8;
+  opacity: 0;
+  animation: fadeIn 1.2s 2.4s var(--ease-soft) forwards;
+}
