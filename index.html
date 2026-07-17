@@ -316,7 +316,7 @@
     if (frame.getAttribute('src') !== deck[idx].file) frame.src = deck[idx].file;
     counter.innerHTML = (idx + 1) + ' / ' + deck.length + ' <span class="label">' + (deck[idx].label || '') + '</span>';
     try { localStorage.setItem(storageKey, String(idx)); } catch (_) {}
-    if (location.hash !== '#' + (idx + 1)) history.replaceState(null, '', '#' + (idx + 1));
+    if (document.body.getAttribute('data-mode') === 'present' && location.hash !== '#' + (idx + 1)) history.replaceState(null, '', '#' + (idx + 1));
   }
   function next() { show(Math.min(current + 1, deck.length - 1)); }
   function prev() { show(Math.max(current - 1, 0)); }
