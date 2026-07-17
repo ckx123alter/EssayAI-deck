@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>EssayAI · 打印版</title>
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1920px;
+    background: #fff;
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .print-stack {
+    display: flex; flex-direction: column;
+  }
+
+  .print-page {
+    width: 1920px; height: 1080px;
+    overflow: hidden;
+    page-break-after: always;
+    position: relative;
+    background: #FAFAFA;
+  }
+  .print-page:last-child { page-break-after: auto; }
+
+  .print-page iframe {
+    width: 1920px; height: 1080px;
+    border: 0; display: block;
+  }
+
+  /* ── Final link page ── */
+  .link-page {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    background: #FAFAFA;
+  }
+  .link-page .thanks {
+    font-family: 'Newsreader', 'Cormorant Garamond', Georgia, serif;
+    font-size: 72px; font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #1A1A1A;
+    margin-bottom: 32px;
+  }
+  .link-page .hint {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 24px; font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #5A5A5A;
+    margin-bottom: 48px;
+  }
+  .link-page .url {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 28px; font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #4A5568;
+    padding: 28px 56px;
+    border: 2px solid #4A5568;
+    border-radius: 14px;
+    background: rgba(74,85,104,0.04);
+  }
+  .link-page .note {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 16px; font-weight: 300;
+    color: #999;
+    margin-top: 56px;
+    letter-spacing: 0.06em;
+  }
+  .link-page .divider {
+    width: 60px; height: 1px;
+    background: #D8D8D8;
+    margin: 40px auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="print-stack">
+  <div class="print-page"><iframe src="slides/01-cover.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/02-market.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/03-painpoints.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/04-solution.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/05-demo.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/06-journey.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/07-moat.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/08-business.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/09-roadmap.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/10-philosophy.html"></iframe></div>
+  <div class="print-page"><iframe src="slides/11-thanks.html"></iframe></div>
+
+  <!-- Final link page -->
+  <div class="print-page link-page">
+    <div class="thanks">在线演示</div>
+    <div class="hint">复制以下链接到浏览器，观看完整交互演示（含动态效果与演示视频）</div>
+    <div class="url">https://ckx123alter.github.io/EssayAI-deck/</div>
+    <div class="divider"></div>
+  </div>
+</div>
+
+</body>
+</html>
