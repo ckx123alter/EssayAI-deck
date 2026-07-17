@@ -315,7 +315,6 @@
     current = idx;
     if (frame.getAttribute('src') !== deck[idx].file) frame.src = deck[idx].file;
     counter.innerHTML = (idx + 1) + ' / ' + deck.length + ' <span class="label">' + (deck[idx].label || '') + '</span>';
-    try { localStorage.setItem(storageKey, String(idx)); } catch (_) {}
     if (document.body.getAttribute('data-mode') === 'present' && location.hash !== '#' + (idx + 1)) history.replaceState(null, '', '#' + (idx + 1));
   }
   function next() { show(Math.min(current + 1, deck.length - 1)); }
@@ -344,11 +343,10 @@
   window.addEventListener('hashchange', () => { const m = location.hash.match(/^#(\d+)$/); if (m) { current = parseInt(m[1], 10) - 1; setMode('present'); } });
 
   const hashMatch = location.hash.match(/^#(\d+)$/);
-  if (hashMatch) current = Math.min(parseInt(hashMatch[1], 10) - 1, deck.length - 1);
-  else { try { const v = parseInt(localStorage.getItem(storageKey), 10); if (!isNaN(v) && v >= 0 && v < deck.length) current = v; } catch (_) {} }
+  if (hashMatch) { current = Math.min(parseInt(hashMatch[1], 10) - 1, deck.length - 1); setMode('present'); }
+  else { current = 0; setMode('overview'); buildOverview(); }
 
   fit(); show(current);
-  setMode('present');
 
   // Reclaim focus after clicking inside iframe so keyboard nav keeps working
   // Disabled: conflicts with text selection in iframe
