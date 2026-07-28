@@ -116,13 +116,12 @@ def create_pptx(screenshots: list[Path]):
             height=prs.slide_height,
         )
 
-        # ── 第 7 页：嵌入演示视频 ──
+        # ── 第 7 页：嵌入演示视频（居中） ──
         if filename == "07-demo.html" and VIDEO_PATH.exists():
-            # 视频放在右下角小区域，覆盖在截图上
-            video_left = Inches(8.6)
-            video_top = Inches(5.6)
-            video_width = Inches(4.4)
-            video_height = Inches(1.7)
+            video_width = Inches(9.0)
+            video_height = Inches(5.06)
+            video_left = Inches((13.333 - 9.0) / 2)
+            video_top = Inches((7.5 - 5.06) / 2)
 
             try:
                 movie = slide.shapes.add_movie(
