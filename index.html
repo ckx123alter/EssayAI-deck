@@ -18,17 +18,19 @@
 -->
 <script>
   window.DECK_MANIFEST = [
-    { file: "slides/01-cover.html",    label: "封面 · EssayAI" },
-    { file: "slides/02-market.html",   label: "市场洞察" },
-    { file: "slides/03-painpoints.html", label: "用户痛点" },
-    { file: "slides/04-solution.html", label: "产品方案" },
-    { file: "slides/05-demo.html",     label: "产品效果" },
-    { file: "slides/06-journey.html",  label: "用户旅程" },
-    { file: "slides/07-moat.html",     label: "竞争壁垒" },
-    { file: "slides/08-business.html", label: "商业闭环" },
-    { file: "slides/09-roadmap.html",  label: "增长路线图" },
-    { file: "slides/10-philosophy.html", label: "AI产品方法论" },
-    { file: "slides/11-thanks.html",   label: "谢谢" },
+    { file: "slides/01-cover.html",     label: "封面 · EssayAI" },
+    { file: "slides/02-investment.html", label: "项目概要" },
+    { file: "slides/03-market.html",    label: "市场洞察" },
+    { file: "slides/04-painpoints.html", label: "用户痛点" },
+    { file: "slides/05-solution.html",  label: "产品方案" },
+    { file: "slides/06-tech.html",      label: "核心技术" },
+    { file: "slides/07-demo.html",      label: "产品展示" },
+    { file: "slides/08-moat.html",      label: "竞品对比" },
+    { file: "slides/09-roadmap.html",   label: "增长路线" },
+    { file: "slides/10-financials.html", label: "财务预测" },
+    { file: "slides/11-funding.html",   label: "融资需求" },
+    { file: "slides/12-team.html",      label: "团队介绍" },
+    { file: "slides/13-thanks.html",    label: "谢谢" },
   ];
   window.DECK_WIDTH = 1920;
   window.DECK_HEIGHT = 1080;
@@ -93,15 +95,15 @@
   .card .thumb { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: top left; pointer-events: none; }
   .card .thumb iframe { width: 1920px; height: 1080px; border: 0; display: block; background: #fff; pointer-events: none; }
   .card .thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
-  .card .num { position: absolute; bottom: 6px; left: 7px; background: rgba(16,12,7,0.76); color: #fff; font-size: 11px; line-height: 1; padding: 4px 7px; border-radius: 5px; font-variant-numeric: tabular-nums; letter-spacing: 0.03em; z-index: 3; pointer-events: none; max-width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card .num { position: absolute; bottom: 6px; left: 7px; background: rgba(16,12,7,0.76); color: #fff; font-size: 15px; line-height: 1; padding: 4px 7px; border-radius: 5px; font-variant-numeric: tabular-nums; letter-spacing: 0.03em; z-index: 3; pointer-events: none; max-width: 90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #ov-gallery .card .num { opacity: 0; transition: opacity .25s; }
   #ov-gallery .card:hover .num { opacity: 1; }
 
-  .overview-title { position: fixed; top: 24px; left: 0; right: 0; text-align: center; font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; z-index: 40; pointer-events: none; }
+  .overview-title { position: fixed; top: 24px; left: 0; right: 0; text-align: center; font-size: 17px; letter-spacing: 0.22em; text-transform: uppercase; z-index: 40; pointer-events: none; }
   body[data-ov="grid"]    .overview-title { color: #5a5346; opacity: 0.66; }
   body[data-ov="gallery"] .overview-title { color: rgba(244,238,224,0.7); text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
 
-  .start-btn { position: fixed; bottom: 26px; right: 26px; border: 0; padding: 13px 24px; border-radius: 999px; font-size: 15px; font-family: inherit; letter-spacing: 0.04em; cursor: pointer; z-index: 200; transition: transform .18s, box-shadow .18s; }
+  .start-btn { position: fixed; bottom: 26px; right: 26px; border: 0; padding: 13px 24px; border-radius: 999px; font-size: 19px; font-family: inherit; letter-spacing: 0.04em; cursor: pointer; z-index: 200; transition: transform .18s, box-shadow .18s; }
   body[data-ov="grid"]    .start-btn { background: #1a1712; color: #fff; box-shadow: 0 8px 28px rgba(40,34,24,0.28); }
   body[data-ov="gallery"] .start-btn { background: #f4eee0; color: #1a1712; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
   .start-btn:hover { transform: translateY(-2px); }
@@ -109,13 +111,13 @@
   /* ════════ 演示模式 ════════ */
   #stage { position: fixed; top: 50%; left: 50%; transform-origin: top left; will-change: transform; background: #fff; box-shadow: 0 10px 60px rgba(0,0,0,0.4); }
   #stage iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
-  .counter { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.65); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 13px; letter-spacing: 0.05em; font-variant-numeric: tabular-nums; z-index: 100; opacity: 0.7; }
+  .counter { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.65); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 17px; letter-spacing: 0.05em; font-variant-numeric: tabular-nums; z-index: 100; opacity: 0.7; }
   .counter .label { color: rgba(255,255,255,0.7); margin-left: 8px; }
-  .overview-btn { position: fixed; top: 20px; left: 20px; background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.85); border: 0; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-family: inherit; cursor: pointer; z-index: 100; opacity: 0.6; }
+  .overview-btn { position: fixed; top: 20px; left: 20px; background: rgba(0,0,0,0.55); color: rgba(255,255,255,0.85); border: 0; padding: 7px 14px; border-radius: 999px; font-size: 17px; font-family: inherit; cursor: pointer; z-index: 100; opacity: 0.6; }
   .overview-btn:hover { opacity: 1; }
   .nav-zone { position: fixed; top: 0; bottom: 0; width: 15%; cursor: pointer; z-index: 50; }
   .nav-zone.left { left: 0; } .nav-zone.right { right: 0; }
-  .nav-hint { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; font-size: 22px; opacity: 0; transition: opacity .2s; }
+  .nav-hint { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; font-size: 26px; opacity: 0; transition: opacity .2s; }
   .nav-zone.left .nav-hint { left: 20px; } .nav-zone.right .nav-hint { right: 20px; }
   .nav-zone:hover .nav-hint { opacity: 1; }
 
